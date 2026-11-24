@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELOCE SPORTS — Camisas e jerseys licenciados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0B0C;
+    --bg-2:#151517;
+    --bg-3:#1C1C1F;
+    --ink:#F1F1EF;
+    --muted:#9B9C9E;
+    --red:#D81F2A;
+    --red-dim:#8F1620;
+    --silver:#BCC1C4;
+    --silver-dim:#6E7274;
+    --line:rgba(241,241,239,0.14);
+    --line-soft:rgba(241,241,239,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto !important; animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Work Sans',sans-serif; line-height:1.5;}
+  h1,h2,h3{font-family:'Oswald',sans-serif; margin:0; font-weight:600; letter-spacing:0.005em;}
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--red); outline-offset:3px;}
+  .num{font-variant-numeric:tabular-nums;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line-soft);}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1180px; margin:0 auto;}
+  .logo{font-family:'Oswald',sans-serif; font-size:22px; font-weight:700; display:flex; align-items:center; gap:8px; letter-spacing:0.01em;}
+  .logo .bar{width:3px; height:18px; background:var(--red); display:inline-block;}
+  .logo .sports{color:var(--red); font-size:13px; font-weight:600; letter-spacing:0.12em; margin-left:2px; align-self:flex-end; margin-bottom:2px;}
+  .nav-links{display:flex; gap:32px; list-style:none; margin:0; padding:0;}
+  .nav-links a{text-decoration:none; font-size:14px; font-weight:500; color:var(--silver); border-bottom:1px solid transparent; padding-bottom:3px; transition:border-color .2s, color .2s;}
+  .nav-links a:hover{border-color:var(--red); color:var(--ink);}
+  @media (max-width:820px){ .nav-links{display:none;} }
+
+  /* HERO */
+  header.hero{background:var(--bg); position:relative; overflow:hidden; border-bottom:1px solid var(--line-soft);}
+  header.hero::before{
+    content:""; position:absolute; top:0; right:0; width:38%; height:100%;
+    background:linear-gradient(135deg, transparent 0%, rgba(216,31,42,0.08) 100%);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:1180px; margin:0 auto; padding:84px 32px 60px; display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:end; position:relative;}
+  .hero-eyebrow{font-size:13px; color:var(--silver); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:18px; opacity:0; transform:translateY(6px); animation:rise .6s ease forwards .1s;}
+  .hero h1{font-size:clamp(38px,6vw,74px); line-height:1.02; opacity:0; transform:translateY(10px); animation:rise .7s ease forwards .25s;}
+  .hero h1 .accent{color:var(--red);}
+  .hero-side{opacity:0; transform:translateY(10px); animation:rise .7s ease forwards .45s;}
+  .hero-side p{font-size:16.5px; color:var(--muted); max-width:36ch;}
+  .hero-stats{display:flex; gap:28px; margin-top:22px; flex-wrap:wrap;}
+  .hero-stats div{border-left:2px solid var(--silver-dim); padding-left:12px;}
+  .hero-stats .n{font-family:'Oswald',sans-serif; font-size:26px; font-weight:600; color:var(--red);}
+  .hero-stats .l{font-size:12px; color:var(--muted);}
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+
+  /* TICKER */
+  .ticker{background:var(--bg-2); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); overflow:hidden; padding:12px 0;}
+  .ticker-track{display:flex; gap:44px; white-space:nowrap; width:max-content; animation:scroll 26s linear infinite;}
+  .ticker-track span{color:var(--silver); font-size:13px; letter-spacing:.02em;}
+  .ticker-track span.dot::before{content:"•"; margin-right:44px; color:var(--red);}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  .section{padding:80px 0;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; border-bottom:1px solid var(--line); padding-bottom:22px;}
+  .section-head h2{font-size:clamp(26px,3.2vw,38px);}
+  .section-head p{max-width:38ch; font-size:14.5px; color:var(--muted); margin:0;}
+
+  /* BEST SELLERS */
+  .best-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .best-card{background:var(--bg-2); padding:26px 22px; border-top:2px solid transparent;}
+  .best-card:hover{border-top-color:var(--red);}
+  .best-rank{font-family:'Oswald',sans-serif; font-size:12.5px; color:var(--red); letter-spacing:0.05em; margin-bottom:14px;}
+  .best-badge{width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:600; font-size:14px; background:var(--red); color:#fff; margin-bottom:16px;}
+  .best-card h3{font-size:17px; margin-bottom:6px; line-height:1.25; color:var(--ink);}
+  .best-meta{font-size:12.5px; color:var(--muted); margin-bottom:14px;}
+  .best-price{font-family:'Oswald',sans-serif; font-size:19px; color:var(--ink);}
+  .best-units{font-size:12px; color:var(--silver-dim); margin-top:4px;}
+  @media (max-width:900px){ .best-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .best-grid{grid-template-columns:1fr;} }
+
+  /* CATALOG */
+  .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px;}
+  .filter-btn{
+    font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:500;
+    background:none; border:1px solid var(--line); color:var(--silver);
+    padding:9px 18px; cursor:pointer; transition:background .15s, color .15s, border-color .15s;
+  }
+  .filter-btn:hover{border-color:var(--silver);}
+  .filter-btn.active{background:var(--red); color:#fff; border-color:var(--red);}
+
+  .prod-list{border-top:1px solid var(--line);}
+  .prod-row{
+    display:grid; grid-template-columns:52px 1fr auto auto auto; gap:20px; align-items:center;
+    padding:18px 0; border-bottom:1px solid var(--line);
+  }
+  .prod-badge{width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:600; font-size:12.5px; background:var(--bg-3); border:1.5px solid var(--silver-dim); color:var(--silver);}
+  .prod-name{font-size:15.5px; font-weight:500; color:var(--ink);}
+  .prod-meta{font-size:12.5px; color:var(--muted); margin-top:2px;}
+  .prod-tag{
+    font-size:11.5px; padding:4px 10px; border:1px solid var(--line); color:var(--muted); white-space:nowrap; justify-self:start;
+  }
+  .prod-tag.alto{border-color:var(--red); color:var(--red);}
+  .prod-size{font-size:13px; color:var(--silver); justify-self:center;}
+  .prod-price{font-family:'Oswald',sans-serif; font-size:16.5px; justify-self:end; color:var(--ink);}
+  @media (max-width:760px){
+    .prod-row{grid-template-columns:40px 1fr auto; row-gap:6px;}
+    .prod-tag, .prod-size{display:none;}
+  }
+
+  /* PROCESS / FORNECEDORES */
+  .about{background:var(--bg-2); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);}
+  .proc-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:0;}
+  .proc-item{padding-right:24px; border-right:1px solid var(--line);}
+  .proc-item:last-child{border-right:none; padding-right:0;}
+  .proc-item .num{font-family:'Oswald',sans-serif; color:var(--red); font-size:14px; display:block; margin-bottom:12px;}
+  .proc-item h3{font-size:17px; margin-bottom:8px; color:var(--ink);}
+  .proc-item p{font-size:14px; color:var(--muted); margin:0;}
+  @media (max-width:820px){ .proc-grid{grid-template-columns:1fr 1fr; row-gap:32px;} .proc-item{border-right:none;} }
+  @media (max-width:520px){ .proc-grid{grid-template-columns:1fr;} }
+
+  /* FOOTER */
+  footer{background:var(--bg); border-top:1px solid var(--line-soft);}
+  .footer-top{padding:64px 0 48px; display:grid; grid-template-columns:1.2fr 1fr; gap:48px; align-items:start;}
+  .footer-top h2{font-size:clamp(24px,3vw,32px); max-width:16ch; color:var(--ink);}
+  .footer-form{display:flex; border-bottom:1px solid var(--silver-dim); max-width:420px; padding-bottom:10px;}
+  .footer-form input{flex:1; border:none; background:none; font-size:15px; font-family:'Work Sans',sans-serif; padding:6px 0; color:var(--ink);}
+  .footer-form input::placeholder{color:var(--muted);}
+  .footer-form input:focus{outline:none;}
+  .footer-form button{border:none; background:none; color:var(--red); font-weight:600; cursor:pointer; font-size:14px;}
+  .footer-note{font-size:12.5px; color:var(--muted); margin-top:12px;}
+  .footer-cols{display:flex; gap:56px;}
+  .footer-col h4{font-size:12.5px; color:var(--silver); margin:0 0 12px; font-weight:600; letter-spacing:0.03em;}
+  .footer-col ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+  .footer-col a{font-size:14px; text-decoration:none; color:var(--muted);}
+  .footer-col a:hover{color:var(--red);}
+  .footer-bottom{border-top:1px solid var(--line-soft); padding:20px 0; display:flex; justify-content:space-between; font-size:12.5px; color:var(--silver-dim);}
+  @media (max-width:760px){ .footer-top{grid-template-columns:1fr; gap:32px;} }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="bar"></span>VELOCE<span class="sports">SPORTS</span></div>
+    <ul class="nav-links">
+      <li><a href="#mais-vendidos">Mais vendidos</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#fornecedores">Como funciona</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Camisas, jerseys e moletons licenciados</div>
+      <h1>A camisa do seu<br>time, na <span class="accent">velocidade</span> certa.</h1>
+    </div>
+    <div class="hero-side">
+      <p>Futebol, NBA, NFL e vôlei em um catálogo só. Peças nacionais e importadas, sempre com origem verificada e entrega rastreada até o seu fornecedor.</p>
+      <div class="hero-stats">
+        <div><div class="n num">20</div><div class="l">produtos no catálogo</div></div>
+        <div><div class="n num">10</div><div class="l">fornecedores licenciados</div></div>
+        <div><div class="n num">4</div><div class="l">esportes cobertos</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Futebol</span><span class="dot">Basquete</span><span class="dot">Futebol Americano</span><span class="dot">Vôlei</span><span class="dot">Camisas</span><span class="dot">Jerseys</span><span class="dot">Regatas</span><span class="dot">Jaquetas</span><span class="dot">Moletons</span>
+    <span>Futebol</span><span class="dot">Basquete</span><span class="dot">Futebol Americano</span><span class="dot">Vôlei</span><span class="dot">Camisas</span><span class="dot">Jerseys</span><span class="dot">Regatas</span><span class="dot">Jaquetas</span><span class="dot">Moletons</span>
+  </div>
+</div>
+
+<section class="section" id="mais-vendidos">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Mais vendidos do mês</h2>
+      <p>Calculado a partir das 263 vendas registradas entre 03/06 e 17/09/2026 (parte delas simulada, conforme o TCC).</p>
+    </div>
+    <div class="best-grid" id="bestGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="catalogo" style="background:var(--bg-2); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Catálogo completo</h2>
+      <p>20 peças ativas. Filtre por categoria para ver só o que interessa.</p>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="prod-list" id="prodList"></div>
+  </div>
+</section>
+
+<section class="about" id="fornecedores">
+  <div class="wrap section">
+    <div class="section-head" style="border-color:var(--line);">
+      <h2>Da fábrica até a sua casa</h2>
+      <p>Trabalhamos com fornecedores nacionais e importados — cada peça mostra a origem antes da compra.</p>
+    </div>
+    <div class="proc-grid">
+      <div class="proc-item">
+        <span class="num">01</span>
+        <h3>Seleção do fornecedor</h3>
+        <p>10 fornecedores fixos, do Brasil, EUA, Europa, Argentina e China, cada um especializado em uma linha.</p>
+      </div>
+      <div class="proc-item">
+        <span class="num">02</span>
+        <h3>Conferência de origem</h3>
+        <p>Toda peça importada ou nacional é registrada com o prazo de entrega do fornecedor de origem.</p>
+      </div>
+      <div class="proc-item">
+        <span class="num">03</span>
+        <h3>Controle de estoque</h3>
+        <p>Estoque atualizado a cada venda, com alerta automático quando um produto entra em nível baixo.</p>
+      </div>
+      <div class="proc-item">
+        <span class="num">04</span>
+        <h3>Envio</h3>
+        <p>Pix, crédito ou débito na hora da compra, com despacho a partir do estoque disponível mais próximo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="wrap footer-top">
+    <div>
+      <h2>Receba aviso quando o seu time chegar.</h2>
+      <form class="footer-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Inscrito.';">
+        <input type="email" placeholder="seu@email.com" required>
+        <button type="submit">Avisar</button>
+      </form>
+      <p class="footer-note">Um e-mail só quando o produto que você segue reabastecer.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Loja</h4>
+        <ul>
+          <li><a href="#mais-vendidos">Mais vendidos</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#fornecedores">Como funciona</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pagamento</h4>
+        <ul>
+          <li>Pix</li>
+          <li>Cartão de crédito</li>
+          <li>Cartão de débito</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 VELOCE SPORTS. Empresa fictícia.</span>
+    <span>Catálogo com 20 peças ativas.</span>
+  </div>
+</footer>
+
+<script>
+const PRODUCTS = [
+  {id:"P001", nome:"Camisa Corinthians Home 2026", esporte:"Futebol", time:"Corinthians", categoria:"Camisa", tamanho:"M", origem:"Nacional", preco:219.90, premium:"Médio"},
+  {id:"P002", nome:"Camisa Brasil Seleção 2026", esporte:"Futebol", time:"Brasil", categoria:"Camisa", tamanho:"G", origem:"Importado", preco:269.90, premium:"Alto"},
+  {id:"P003", nome:"Camisa Flamengo Away 2026", esporte:"Futebol", time:"Flamengo", categoria:"Camisa", tamanho:"M", origem:"Nacional", preco:229.90, premium:"Médio"},
+  {id:"P004", nome:"Camisa Real Madrid Home", esporte:"Futebol", time:"Real Madrid", categoria:"Camisa", tamanho:"G", origem:"Importado", preco:319.90, premium:"Alto"},
+  {id:"P005", nome:"Camisa PSG Third", esporte:"Futebol", time:"PSG", categoria:"Camisa", tamanho:"M", origem:"Importado", preco:329.90, premium:"Alto"},
+  {id:"P006", nome:"Regata Lakers #23", esporte:"Basquete", time:"Lakers", categoria:"Regata", tamanho:"G", origem:"Importado", preco:299.90, premium:"Alto"},
+  {id:"P007", nome:"Regata Chicago Bulls #23", esporte:"Basquete", time:"Bulls", categoria:"Regata", tamanho:"M", origem:"Importado", preco:289.90, premium:"Alto"},
+  {id:"P008", nome:"Regata Boston Celtics #0", esporte:"Basquete", time:"Celtics", categoria:"Regata", tamanho:"G", origem:"Importado", preco:284.90, premium:"Alto"},
+  {id:"P009", nome:"Jersey Chiefs Mahomes", esporte:"Futebol Americano", time:"Chiefs", categoria:"Jersey", tamanho:"G", origem:"Importado", preco:349.90, premium:"Alto"},
+  {id:"P010", nome:"Jersey Eagles Hurts", esporte:"Futebol Americano", time:"Eagles", categoria:"Jersey", tamanho:"M", origem:"Importado", preco:344.90, premium:"Alto"},
+  {id:"P011", nome:"Jersey 49ers McCaffrey", esporte:"Futebol Americano", time:"49ers", categoria:"Jersey", tamanho:"G", origem:"Importado", preco:339.90, premium:"Alto"},
+  {id:"P012", nome:"Camisa Vôlei Brasil Masculina", esporte:"Vôlei", time:"Brasil", categoria:"Camisa", tamanho:"M", origem:"Nacional", preco:199.90, premium:"Médio"},
+  {id:"P013", nome:"Camisa Vôlei Brasil Feminina", esporte:"Vôlei", time:"Brasil", categoria:"Camisa", tamanho:"P", origem:"Nacional", preco:199.90, premium:"Médio"},
+  {id:"P014", nome:"Jaqueta Barcelona", esporte:"Futebol", time:"Barcelona", categoria:"Jaqueta", tamanho:"G", origem:"Importado", preco:389.90, premium:"Alto"},
+  {id:"P015", nome:"Jaqueta Juventus", esporte:"Futebol", time:"Juventus", categoria:"Jaqueta", tamanho:"M", origem:"Importado", preco:379.90, premium:"Alto"},
+  {id:"P016", nome:"Moletom Manchester City", esporte:"Futebol", time:"Manchester City", categoria:"Moletom", tamanho:"G", origem:"Importado", preco:359.90, premium:"Alto"},
+  {id:"P017", nome:"Moletom Corinthians Casual", esporte:"Futebol", time:"Corinthians", categoria:"Moletom", tamanho:"M", origem:"Nacional", preco:249.90, premium:"Médio"},
+  {id:"P018", nome:"Short Lakers Roxo", esporte:"Basquete", time:"Lakers", categoria:"Short", tamanho:"M", origem:"Importado", preco:189.90, premium:"Médio"},
+  {id:"P019", nome:"Short Bulls Vermelho", esporte:"Basquete", time:"Bulls", categoria:"Short", tamanho:"G", origem:"Importado", preco:184.90, premium:"Médio"},
+  {id:"P020", nome:"Camisa Palmeiras Treino", esporte:"Futebol", time:"Palmeiras", categoria:"Camisa", tamanho:"G", origem:"Nacional", preco:214.90, premium:"Médio"},
+];
+
+const UNIDADES_VENDIDAS = {
+  "Camisa Brasil Seleção 2026": 38,
+  "Camisa Corinthians Home 2026": 38,
+  "Camisa Vôlei Brasil Feminina": 23,
+  "Camisa Real Madrid Home": 23
+};
+
+function iniciais(time){
+  return time.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
+}
+function fmtPreco(v){ return "R$ " + v.toFixed(2).replace(".",","); }
+
+function renderBestSellers(){
+  const grid = document.getElementById("bestGrid");
+  const nomes = Object.keys(UNIDADES_VENDIDAS);
+  grid.innerHTML = nomes.map((nome, i) => {
+    const p = PRODUCTS.find(pr => pr.nome === nome);
+    return `
+      <div class="best-card">
+        <div class="best-rank">Nº ${i+1} EM VENDAS</div>
+        <div class="best-badge">${iniciais(p.time)}</div>
+        <h3>${p.nome}</h3>
+        <div class="best-meta">${p.esporte} · ${p.categoria}</div>
+        <div class="best-price num">${fmtPreco(p.preco)}</div>
+        <div class="best-units num">${UNIDADES_VENDIDAS[nome]} unidades vendidas</div>
+      </div>`;
+  }).join("");
+}
+
+function renderFilters(){
+  const cats = ["Todos", ...new Set(PRODUCTS.map(p=>p.categoria))];
+  const el = document.getElementById("filters");
+  el.innerHTML = cats.map((c,i)=>
+    `<button class="filter-btn ${i===0?'active':''}" data-cat="${c}">${c}</button>`
+  ).join("");
+  el.addEventListener("click", e=>{
+    if(!e.target.matches(".filter-btn")) return;
+    el.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+    e.target.classList.add("active");
+    renderList(e.target.dataset.cat);
+  });
+}
+
+function renderList(cat){
+  const list = document.getElementById("prodList");
+  const items = cat === "Todos" ? PRODUCTS : PRODUCTS.filter(p=>p.categoria===cat);
+  list.innerHTML = items.map(p => `
+    <div class="prod-row">
+      <div class="prod-badge">${iniciais(p.time)}</div>
+      <div>
+        <div class="prod-name">${p.nome}</div>
+        <div class="prod-meta">${p.esporte} · ${p.time} · ${p.origem}</div>
+      </div>
+      <div class="prod-tag ${p.premium==='Alto'?'alto':''}">${p.premium==='Alto' ? 'Edição premium' : 'Linha padrão'}</div>
+      <div class="prod-size">Tam. ${p.tamanho}</div>
+      <div class="prod-price num">${fmtPreco(p.preco)}</div>
+    </div>
+  `).join("");
+}
+
+renderBestSellers();
+renderFilters();
+renderList("Todos");
+</script>
+
+</body>
+</html>
